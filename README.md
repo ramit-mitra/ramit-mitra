@@ -2,6 +2,8 @@
 
 [![Ramit's GitHub stats]([https://github-readme-stats.vercel.app/api?username=ramit-mitra](https://github-readme-stats.vercel.app/api?username=ramit-mitra&theme=gotham&show_icons=true))](https://github.com/ramit-mitra/github-readme-stats)
 
+[![trophy](https://github-profile-trophy.vercel.app/?username=ramit-mitra)](https://github.com/ryo-ma/github-profile-trophy)
+
 <!--
 **ramit-mitra/ramit-mitra** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
