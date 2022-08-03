@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-[![Ramit's GitHub stats](https://github-readme-stats.vercel.app/api?username=ramit-mitra&theme=gotham&show_icons=true&hide_border =true&count_private=true)](https://github.com/ramit-mitra/github-readme-stats)
+[![Ramit's GitHub stats](https://github-readme-stats.vercel.app/api?username=ramit-mitra&theme=gotham&show_icons=true&hide_border =true)](https://github.com/ramit-mitra/github-readme-stats)
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=ramit-mitra&layout=compact&theme=gotham)](https://github.com/ramit-mitra/github-readme-stats)
 
