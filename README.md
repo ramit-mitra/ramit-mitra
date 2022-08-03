@@ -8,7 +8,9 @@
 
 ## ⭐ Stats 
 <div align="center">
+  
 [![Ramit's GitHub activity graph](https://activity-graph.herokuapp.com/graph?username=ramit-mitra&theme=gotham)](https://github.com/ramit-mitra) <br>
+  
 </div>
 
 <!--
