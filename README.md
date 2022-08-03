@@ -4,7 +4,7 @@
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=ramit-mitra&layout=compact&theme=gotham)](https://github.com/ramit-mitra/github-readme-stats)
 
-[![trophy](https://github-profile-trophy.vercel.app/?username=ramit-mitra&theme=oldie&no-frame=true)](https://github.com/ramit-mitra/github-profile-trophy)
+[![trophy](https://github-profile-trophy.vercel.app/?username=ramit-mitra&theme=gotham&no-frame=true)](https://github.com/ramit-mitra/github-profile-trophy)
 
 <div align="center">
   
