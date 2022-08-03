@@ -6,6 +6,11 @@
 
 [![trophy](https://github-profile-trophy.vercel.app/?username=ramit-mitra&theme=oldie&no-frame=true)](https://github.com/ramit-mitra/github-profile-trophy)
 
+## ⭐ Stats 
+<div align="center">
+[![Ramit's GitHub activity graph](https://activity-graph.herokuapp.com/graph?username=ramit-mitra&theme=gotham)](https://github.com/ramit-mitra) <br>
+</div>
+
 <!--
 **ramit-mitra/ramit-mitra** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
