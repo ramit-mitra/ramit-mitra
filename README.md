@@ -2,6 +2,8 @@
 
 [![Ramit's GitHub stats](https://github-readme-stats.vercel.app/api?username=ramit-mitra&theme=gotham&show_icons=true&hide_border =true&count_private=true)](https://github.com/ramit-mitra/github-readme-stats)
 
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
 [![trophy](https://github-profile-trophy.vercel.app/?username=ramit-mitra&theme=oldie&no-frame=true)](https://github.com/ramit-mitra/github-profile-trophy)
 
 <!--
