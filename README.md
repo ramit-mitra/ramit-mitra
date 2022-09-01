@@ -1,4 +1,4 @@
-### Hi there 👋
+<!-- ### Hi there 👋
 
 [![Ramit's GitHub stats](https://github-readme-stats.vercel.app/api?username=ramit-mitra&theme=gotham&show_icons=true)](https://github.com/ramit-mitra/github-readme-stats)
 
@@ -10,7 +10,7 @@
   
 [![Ramit's GitHub activity graph](https://activity-graph.herokuapp.com/graph?username=ramit-mitra&theme=gotham)](https://github.com/ramit-mitra) <br>
   
-</div>
+</div> -->
 
 <!-- https://metrics.lecoq.io/embed?user= -->
 <img src="/github-metrics.svg" alt="Metrics" width="100%">
