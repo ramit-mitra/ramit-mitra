@@ -13,4 +13,4 @@
 </div> -->
 
 <!-- https://metrics.lecoq.io/embed?user= -->
-<img src="github-metrics.svg" alt="Ramit Mitra GitHub Metrics" width="100%">
+<img src="/github-metrics.svg" alt="Ramit Mitra GitHub Metrics" width="100%">
