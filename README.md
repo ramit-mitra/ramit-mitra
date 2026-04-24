@@ -23,4 +23,4 @@ A Claude skill for deep, source-backed analysis of Indian listed stocks.
 
 ---
 
-[ **GITHUB** ](https://github.com/ramit-mitra) · [ **X / @RAMIT\_MITRA** ](https://x.com/ramit_mitra)
+[ **GITHUB** ](https://github.com/ramit-mitra) · [ **X** ](https://x.com/ramit_mitra)
