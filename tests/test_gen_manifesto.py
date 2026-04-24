@@ -36,5 +36,66 @@ class TestSvgCommon(unittest.TestCase):
         self.assertEqual(xml_escape('he said "hi"'), 'he said &quot;hi&quot;')
 
 
+import subprocess
+
+
+def run_manifesto(theme: str) -> str:
+    """Invoke the generator as a subprocess and capture stdout."""
+    result = subprocess.run(
+        ["python3", str(REPO_ROOT / "scripts" / "gen_manifesto.py"), "--theme", theme],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return result.stdout
+
+
+class TestManifestoGenerator(unittest.TestCase):
+    def test_light_output_is_well_formed_svg(self):
+        svg = run_manifesto("light")
+        root = ET.fromstring(svg)
+        self.assertTrue(root.tag.endswith("svg"))
+
+    def test_dark_output_is_well_formed_svg(self):
+        svg = run_manifesto("dark")
+        root = ET.fromstring(svg)
+        self.assertTrue(root.tag.endswith("svg"))
+
+    def test_light_background_is_white(self):
+        svg = run_manifesto("light")
+        self.assertIn('fill="#ffffff"', svg)
+
+    def test_dark_background_is_github_dark(self):
+        svg = run_manifesto("dark")
+        self.assertIn('fill="#0d1117"', svg)
+
+    def test_accent_highlight_present_in_both_themes(self):
+        # The highlight pill behind "TOOLS" uses the cap-cyan
+        for theme in ("light", "dark"):
+            svg = run_manifesto(theme)
+            self.assertIn("#5FD7DF", svg, f"missing accent in {theme} theme")
+
+    def test_contains_all_manifesto_lines(self):
+        svg = run_manifesto("light")
+        for phrase in (
+            "I BUILD",
+            "MY OWN",
+            "TOOLS.",
+            "MOSTLY IN THE OPEN.",
+            "USUALLY BECAUSE THE",
+            "OFF-THE-SHELF ONE",
+            "IRRITATED ME.",
+        ):
+            self.assertIn(phrase, svg, f"missing line: {phrase!r}")
+
+    def test_invalid_theme_exits_nonzero(self):
+        result = subprocess.run(
+            ["python3", str(REPO_ROOT / "scripts" / "gen_manifesto.py"), "--theme", "purple"],
+            capture_output=True,
+            text=True,
+        )
+        self.assertNotEqual(result.returncode, 0)
+
+
 if __name__ == "__main__":
     unittest.main()
