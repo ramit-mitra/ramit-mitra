@@ -15,13 +15,16 @@ from gen_latest import (  # noqa: E402
 )
 
 
-def push_event(repo, msg, actor="ramit-mitra"):
+def push_event(repo, msg="commit message", actor="ramit-mitra", head="abc123"):
+    # Kept `msg` as a kwarg so existing call sites don't break,
+    # but `msg` is no longer embedded in the payload — commit message
+    # is fetched separately via fetch_commit_message(repo, head).
     return {
         "type": "PushEvent",
         "actor": {"login": actor},
         "repo": {"name": repo},
         "created_at": "2026-04-24T12:00:00Z",
-        "payload": {"commits": [{"message": msg, "distinct": True}]},
+        "payload": {"head": head},
     }
 
 
@@ -36,11 +39,11 @@ class TestPickEvent(unittest.TestCase):
 
     def test_skips_bot_actors(self):
         events = [
-            push_event("ramit-mitra/x", "bot commit", actor="dependabot[bot]"),
-            push_event("ramit-mitra/ramit", "human commit"),
+            push_event("ramit-mitra/x", actor="dependabot[bot]"),
+            push_event("ramit-mitra/ramit", actor="ramit-mitra"),
         ]
         chosen = pick_event(events, "ramit-mitra")
-        self.assertEqual(chosen["payload"]["commits"][0]["message"], "human commit")
+        self.assertEqual(chosen["repo"]["name"], "ramit-mitra/ramit")
 
     def test_skips_self_referential_profile_repo(self):
         # Daily-refresh commit on the profile repo itself must not loop back
@@ -59,6 +62,17 @@ class TestPickEvent(unittest.TestCase):
 
     def test_returns_none_on_empty_list(self):
         self.assertIsNone(pick_event([], "ramit-mitra"))
+
+    def test_returns_none_if_no_head_in_payload(self):
+        # Malformed PushEvent without head SHA
+        events = [{
+            "type": "PushEvent",
+            "actor": {"login": "ramit-mitra"},
+            "repo": {"name": "ramit-mitra/arya"},
+            "created_at": "2026-04-24T12:00:00Z",
+            "payload": {},
+        }]
+        self.assertIsNone(pick_event(events, "ramit-mitra"))
 
 
 class TestSanitizeMessage(unittest.TestCase):

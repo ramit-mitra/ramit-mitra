@@ -45,11 +45,23 @@ def pick_event(events, user):
         if repo == PROFILE_REPO:
             # Skip our own daily-refresh commits
             continue
-        commits = (ev.get("payload") or {}).get("commits") or []
-        if not commits:
+        head = (ev.get("payload") or {}).get("head")
+        if not head:
             continue
         return ev
     return None
+
+
+def fetch_commit_message(repo: str, sha: str) -> str:
+    """Fetch the commit message for a given repo + SHA."""
+    url = f"https://api.github.com/repos/{repo}/commits/{sha}"
+    req = Request(url, headers={"Accept": "application/vnd.github+json"})
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        req.add_header("Authorization", f"Bearer {token}")
+    with urlopen(req, timeout=30) as resp:
+        data = json.load(resp)
+    return (data.get("commit") or {}).get("message", "")
 
 
 def sanitize_message(msg: str) -> str:
@@ -129,11 +141,11 @@ def main():
         chosen = pick_event(events, USER)
         if chosen:
             repo = chosen["repo"]["name"]
-            commits = chosen["payload"]["commits"]
-            message = sanitize_message(commits[-1]["message"])
+            head = chosen["payload"]["head"]
+            raw_msg = fetch_commit_message(repo, head)
+            message = sanitize_message(raw_msg) or PLACEHOLDER
             when_text = relative_time(chosen["created_at"])
     except Exception as e:
-        # Fall back to placeholder on any API/network failure
         print(f"warning: falling back to placeholder ({e})", file=sys.stderr)
 
     sys.stdout.write(render(args.theme, repo, message, when_text))
