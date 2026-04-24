@@ -98,10 +98,13 @@ def render(theme_name: str, repo: str, message: str, when_text: str) -> str:
     fg = theme["fg"]
     bg = theme["bg"]
     accent = theme["accent"]
-    border = theme["border"]
 
-    # On-cyan content is always black — locked design decision
+    # On-cyan content is always black — locked design decision.
+    # This includes the panel's border: the cyan is theme-agnostic and
+    # the hard black outline is part of the brutalist silhouette, so it
+    # must not flip with the theme.
     on_accent = "#111111"
+    border = "#000000"
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" '
