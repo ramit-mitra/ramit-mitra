@@ -34,11 +34,11 @@ BYLINE_Y = 480
 
 # Approximate widths at 64px Arial Black — tuned empirically for brutalist aesthetic
 CHAR_WIDTH_64 = {
-    " ": 20, ".": 20, "-": 26, ",": 18, "'": 14,
-    "I": 25, "J": 28, "L": 36, "1": 30,
-    "M": 58, "W": 58,
+    " ": 26, ".": 22, "-": 30, ",": 22, "'": 18,
+    "I": 30, "J": 34, "L": 42, "1": 36,
+    "M": 66, "W": 66,
 }
-DEFAULT_CHAR_WIDTH_64 = 44
+DEFAULT_CHAR_WIDTH_64 = 50
 
 
 def text_width_64(s: str) -> int:
@@ -68,7 +68,7 @@ def render(theme_name: str) -> str:
             hi_x = PAD_X + left_w
             hi_w = text_width_64(highlight)
             # Pill sits under the highlighted word
-            pill_pad_x = 8
+            pill_pad_x = 10
             pill_pad_y_top = 48   # above baseline
             pill_pad_y_bot = 12   # below baseline
             pill_h = pill_pad_y_top + pill_pad_y_bot
@@ -79,19 +79,21 @@ def render(theme_name: str) -> str:
                 f'width="{hi_w + 2 * pill_pad_x}" height="{pill_h}" '
                 f'fill="{accent}"/>'
             )
-            # Left text
+            # Left text — textLength forces predictable width, eliminates font-measurement variance
             parts.append(
                 f'  <text x="{PAD_X}" y="{y}" '
                 f'font-family="{xml_escape(FONT_DISPLAY)}" font-weight="900" '
                 f'font-size="64" fill="{fg}" '
+                f'textLength="{left_w}" lengthAdjust="spacingAndGlyphs" '
                 f'style="letter-spacing:-2px; text-transform:uppercase;">'
-                f'{xml_escape(left)}</text>'
+                f'{xml_escape(left_with_trailing)}</text>'
             )
-            # Highlighted text (separate element, same styling)
+            # Highlighted text (separate element, same styling) — textLength for deterministic placement
             parts.append(
                 f'  <text x="{hi_x}" y="{y}" '
                 f'font-family="{xml_escape(FONT_DISPLAY)}" font-weight="900" '
                 f'font-size="64" fill="{fg}" '
+                f'textLength="{hi_w}" lengthAdjust="spacingAndGlyphs" '
                 f'style="letter-spacing:-2px; text-transform:uppercase;">'
                 f'{xml_escape(highlight)}</text>'
             )
