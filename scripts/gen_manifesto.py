@@ -32,13 +32,14 @@ LINE_HEIGHT = 68
 TOP_Y = 88
 BYLINE_Y = 480
 
-# Approximate widths at 64px Arial Black — tuned empirically for brutalist aesthetic
+# Measured empirically from rendered Arial Black at 64px in Chrome (bbox.width).
+# "MY OWN" natural width = 289px; tuned so the estimate matches within ~5px.
 CHAR_WIDTH_64 = {
-    " ": 26, ".": 22, "-": 30, ",": 22, "'": 18,
-    "I": 30, "J": 34, "L": 42, "1": 36,
-    "M": 66, "W": 66,
+    " ": 22, ".": 18, "-": 26, ",": 18, "'": 14,
+    "I": 26, "J": 30, "L": 38, "1": 32,
+    "M": 62, "W": 62,
 }
-DEFAULT_CHAR_WIDTH_64 = 50
+DEFAULT_CHAR_WIDTH_64 = 48
 
 
 def text_width_64(s: str) -> int:
@@ -62,10 +63,11 @@ def render(theme_name: str) -> str:
     for idx, (left, highlight) in enumerate(LINES):
         y = TOP_Y + idx * LINE_HEIGHT
         if highlight:
-            # Left text with trailing space to separate from highlighted word
-            left_with_trailing = left + " "
-            left_w = text_width_64(left_with_trailing)
-            hi_x = PAD_X + left_w
+            # Left text renders at natural font width. The highlighted word is
+            # placed using an estimated width for "<left> " (trailing space)
+            # — tuned to match rendered Arial Black within a few pixels.
+            left_w_estimate = text_width_64(left + " ")
+            hi_x = PAD_X + left_w_estimate
             hi_w = text_width_64(highlight)
             # Pill sits under the highlighted word
             pill_pad_x = 10
@@ -79,20 +81,20 @@ def render(theme_name: str) -> str:
                 f'width="{hi_w + 2 * pill_pad_x}" height="{pill_h}" '
                 f'fill="{accent}"/>'
             )
-            # Left text — textLength forces predictable width, eliminates font-measurement variance
+            # Left text renders at natural font width
             parts.append(
                 f'  <text x="{PAD_X}" y="{y}" '
                 f'font-family="{xml_escape(FONT_DISPLAY)}" font-weight="900" '
                 f'font-size="64" fill="{fg}" '
-                f'textLength="{left_w}" lengthAdjust="spacingAndGlyphs" '
                 f'style="letter-spacing:-2px; text-transform:uppercase;">'
-                f'{xml_escape(left_with_trailing)}</text>'
+                f'{xml_escape(left)}</text>'
             )
-            # Highlighted text (separate element, same styling) — textLength for deterministic placement
+            # Highlighted text — always black on cyan (design rule); textLength
+            # locks width so the pill matches exactly.
             parts.append(
                 f'  <text x="{hi_x}" y="{y}" '
                 f'font-family="{xml_escape(FONT_DISPLAY)}" font-weight="900" '
-                f'font-size="64" fill="{fg}" '
+                f'font-size="64" fill="#111111" '
                 f'textLength="{hi_w}" lengthAdjust="spacingAndGlyphs" '
                 f'style="letter-spacing:-2px; text-transform:uppercase;">'
                 f'{xml_escape(highlight)}</text>'
