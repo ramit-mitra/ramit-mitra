@@ -1,9 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/manifesto-dark.svg">
-  <img alt="I build my own tools. Mostly in the open. Usually because the off-the-shelf one irritated me." src="assets/manifesto-light.svg" width="100%">
+  <img alt="I build my own tools. Mostly in the open. Usually because the off-the-shelf one irritated me. — Ramit Mitra, Full Stack + Open Source, India, since 2016." src="assets/manifesto-light.svg" width="100%">
 </picture>
-
-`— RAMIT MITRA  ·  FULL STACK + OPEN SOURCE  ·  INDIA  ·  SINCE 2016`
 
 ---
 
