@@ -1,16 +1,28 @@
-<!-- ### Hi there 👋
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/manifesto-dark.svg">
+  <img alt="I build my own tools. Mostly in the open. Usually because the off-the-shelf one irritated me." src="assets/manifesto-light.svg" width="100%">
+</picture>
 
-[![Ramit's GitHub stats](https://github-readme-stats.vercel.app/api?username=ramit-mitra&theme=gotham&show_icons=true)](https://github.com/ramit-mitra/github-readme-stats)
+`— RAMIT MITRA  ·  FULL STACK + OPEN SOURCE  ·  INDIA  ·  SINCE 2016`
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=ramit-mitra&layout=compact&theme=gotham)](https://github.com/ramit-mitra/github-readme-stats)
+---
 
-[![trophy](https://github-profile-trophy.vercel.app/?username=ramit-mitra&theme=gotham&no-frame=true)](https://github.com/ramit-mitra/github-profile-trophy)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/latest-dark.svg">
+  <img alt="Latest commit" src="assets/latest-light.svg" width="100%">
+</picture>
 
-<div align="center">
-  
-[![Ramit's GitHub activity graph](https://activity-graph.herokuapp.com/graph?username=ramit-mitra&theme=gotham)](https://github.com/ramit-mitra) <br>
-  
-</div> -->
+### `// CURRENT OBSESSIONS`
 
-<!-- https://metrics.lecoq.io/embed?user= -->
-<img src="/github-metrics.svg" alt="Ramit Mitra GitHub Metrics" width="100%">
+**01 · [RAMIT](https://github.com/ramit-mitra/ramit) `(TS)` — BUILDING**
+An AI coding agent — minimalist, extensible, multi-model.
+
+**02 · [ARYA](https://github.com/ramit-mitra/arya) `(GO)` — BUILDING**
+An orchestration service — built for my own workflow first.
+
+**03 · [INDIAN-STOCK-ANALYSER](https://github.com/ramit-mitra/indian-stock-analyser) — SHIPPING**
+A Claude skill for deep, source-backed analysis of Indian listed stocks.
+
+---
+
+[ **GITHUB** ](https://github.com/ramit-mitra) · [ **TWITTER / @RAMIT\_MITRA** ](https://twitter.com/ramit_mitra)
