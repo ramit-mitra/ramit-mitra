@@ -6,14 +6,12 @@ THEMES = {
         "fg": "#111111",
         "accent": "#5FD7DF",
         "border": "#000000",
-        "muted": "#555555",
     },
     "dark": {
         "bg": "#0d1117",
         "fg": "#f0f6fc",
         "accent": "#5FD7DF",
         "border": "#f0f6fc",
-        "muted": "#8b949e",
     },
 }
 
