@@ -32,6 +32,19 @@ LINE_HEIGHT = 68
 TOP_Y = 88
 BYLINE_Y = 480
 
+# Approximate widths at 64px Arial Black — tuned empirically for brutalist aesthetic
+CHAR_WIDTH_64 = {
+    " ": 20, ".": 20, "-": 26, ",": 18, "'": 14,
+    "I": 25, "J": 28, "L": 36, "1": 30,
+    "M": 58, "W": 58,
+}
+DEFAULT_CHAR_WIDTH_64 = 44
+
+
+def text_width_64(s: str) -> int:
+    """Approximate pixel width of uppercase text at 64px Arial Black."""
+    return sum(CHAR_WIDTH_64.get(c.upper(), DEFAULT_CHAR_WIDTH_64) for c in s)
+
 
 def render(theme_name: str) -> str:
     theme = THEMES[theme_name]
@@ -48,28 +61,48 @@ def render(theme_name: str) -> str:
     # Render each manifesto line
     for idx, (left, highlight) in enumerate(LINES):
         y = TOP_Y + idx * LINE_HEIGHT
-        # Highlight pill behind the highlighted word (drawn first so text sits on top)
         if highlight:
-            # Very rough width estimate for the pill; Arial Black uppercase ~ 0.62em
-            pill_w = int(len(highlight) * 38)
-            # Position pill after the left word with a space
-            left_w = int(len(left) * 38)
-            pill_x = PAD_X + left_w + 20
-            pill_y = y - 54
+            # Left text with trailing space to separate from highlighted word
+            left_with_trailing = left + " "
+            left_w = text_width_64(left_with_trailing)
+            hi_x = PAD_X + left_w
+            hi_w = text_width_64(highlight)
+            # Pill sits under the highlighted word
+            pill_pad_x = 8
+            pill_pad_y_top = 48   # above baseline
+            pill_pad_y_bot = 12   # below baseline
+            pill_h = pill_pad_y_top + pill_pad_y_bot
+            pill_y = y - pill_pad_y_top
+            # Draw pill first (under text)
             parts.append(
-                f'  <rect x="{pill_x}" y="{pill_y}" width="{pill_w}" height="64" '
+                f'  <rect x="{hi_x - pill_pad_x}" y="{pill_y}" '
+                f'width="{hi_w + 2 * pill_pad_x}" height="{pill_h}" '
                 f'fill="{accent}"/>'
             )
-
-        parts.append(
-            f'  <text x="{PAD_X}" y="{y}" '
-            f'font-family="{xml_escape(FONT_DISPLAY)}" font-weight="900" '
-            f'font-size="64" fill="{fg}" '
-            f'style="letter-spacing:-2px; text-transform:uppercase;">'
-            f'{xml_escape(left)}'
-            + (f' <tspan fill="{fg}">{xml_escape(highlight)}</tspan>' if highlight else '')
-            + '</text>'
-        )
+            # Left text
+            parts.append(
+                f'  <text x="{PAD_X}" y="{y}" '
+                f'font-family="{xml_escape(FONT_DISPLAY)}" font-weight="900" '
+                f'font-size="64" fill="{fg}" '
+                f'style="letter-spacing:-2px; text-transform:uppercase;">'
+                f'{xml_escape(left)}</text>'
+            )
+            # Highlighted text (separate element, same styling)
+            parts.append(
+                f'  <text x="{hi_x}" y="{y}" '
+                f'font-family="{xml_escape(FONT_DISPLAY)}" font-weight="900" '
+                f'font-size="64" fill="{fg}" '
+                f'style="letter-spacing:-2px; text-transform:uppercase;">'
+                f'{xml_escape(highlight)}</text>'
+            )
+        else:
+            parts.append(
+                f'  <text x="{PAD_X}" y="{y}" '
+                f'font-family="{xml_escape(FONT_DISPLAY)}" font-weight="900" '
+                f'font-size="64" fill="{fg}" '
+                f'style="letter-spacing:-2px; text-transform:uppercase;">'
+                f'{xml_escape(left)}</text>'
+            )
 
     # Byline
     parts.append(

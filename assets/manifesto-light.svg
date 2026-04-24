@@ -1,8 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520">
   <rect width="900" height="520" fill="#ffffff"/>
   <text x="32" y="88" font-family="'Arial Black', 'Helvetica Neue', Impact, 'Franklin Gothic Heavy', sans-serif" font-weight="900" font-size="64" fill="#111111" style="letter-spacing:-2px; text-transform:uppercase;">I BUILD</text>
-  <rect x="280" y="102" width="228" height="64" fill="#5FD7DF"/>
-  <text x="32" y="156" font-family="'Arial Black', 'Helvetica Neue', Impact, 'Franklin Gothic Heavy', sans-serif" font-weight="900" font-size="64" fill="#111111" style="letter-spacing:-2px; text-transform:uppercase;">MY OWN <tspan fill="#111111">TOOLS.</tspan></text>
+  <rect x="312" y="108" width="248" height="60" fill="#5FD7DF"/>
+  <text x="32" y="156" font-family="'Arial Black', 'Helvetica Neue', Impact, 'Franklin Gothic Heavy', sans-serif" font-weight="900" font-size="64" fill="#111111" style="letter-spacing:-2px; text-transform:uppercase;">MY OWN</text>
+  <text x="320" y="156" font-family="'Arial Black', 'Helvetica Neue', Impact, 'Franklin Gothic Heavy', sans-serif" font-weight="900" font-size="64" fill="#111111" style="letter-spacing:-2px; text-transform:uppercase;">TOOLS.</text>
   <text x="32" y="224" font-family="'Arial Black', 'Helvetica Neue', Impact, 'Franklin Gothic Heavy', sans-serif" font-weight="900" font-size="64" fill="#111111" style="letter-spacing:-2px; text-transform:uppercase;">MOSTLY IN THE OPEN.</text>
   <text x="32" y="292" font-family="'Arial Black', 'Helvetica Neue', Impact, 'Franklin Gothic Heavy', sans-serif" font-weight="900" font-size="64" fill="#111111" style="letter-spacing:-2px; text-transform:uppercase;">USUALLY BECAUSE THE</text>
   <text x="32" y="360" font-family="'Arial Black', 'Helvetica Neue', Impact, 'Franklin Gothic Heavy', sans-serif" font-weight="900" font-size="64" fill="#111111" style="letter-spacing:-2px; text-transform:uppercase;">OFF-THE-SHELF ONE</text>
